@@ -1,38 +1,27 @@
 package springmvc;
 
-import org.springframework.beans.propertyeditors.StringArrayPropertyEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class studentController {
-    public String showFormManual(){
-        return "manual-form";
-    }
+        public class studentController {
+            @RequestMapping("/show-form-bindings")
+            public String ShowFormBindings(Model model){
+                Student theStudent = new Student();
+                model.addAttribute("steve",theStudent);
+                return "binding-form";
+
+            }
+            @RequestMapping("/process-form-binding")
+            public String processFormBinding(@ModelAttribute("steve") Student s){
+                System.out.println(s.getFirstName());
+                System.out.println(s.getLastName());
+                return "confirm-binding";
+
+            }
 
 
-@RequestMapping("/process-form-manual")
-    public String processFormManual(HttpServletRequest request,
-                                    Model model) {
-        String firstname = request.getParameter(firstname);
-        String lastname = request.getParameter(lastname);
-        //Missing the rest of this, other files
-}
-
-    public String processFormAnno(@RequestParam String fname,
-                                  @RequestParam String lname,
-                                  Model model)
-    {
-        String theMessage = "hello + " + fname;
-
-        model.addAttribute("message", theMessage);
-
-        return "Confirm manual";
-
-    }
 }
