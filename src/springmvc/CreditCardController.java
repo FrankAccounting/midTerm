@@ -22,7 +22,7 @@ public class CreditCardController {
                               Model model)
     {
        String msg = ccNumber;
-       model.addAttribute("essage",msg)
+       model.addAttribute("essage",msg);
     return "ccc";
     }
 }
