@@ -22,8 +22,8 @@ public class SimpleFormController {
         String theMessage = "Hello " + theName + "!!!";
         model.addAttribute("msg", theMessage);
         return "simple-form-resault";
-        //need ot add tomcat is think?
     }
+
 
     @RequestMapping("/shoutHelloAgain")
     public String shoutWithAnnotation(
